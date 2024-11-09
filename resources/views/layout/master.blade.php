@@ -40,7 +40,7 @@
 
 </head>
 
-<body>
+<body data-authenticated="{{ auth()->check() }}" data-user-role="{{ auth()->check() ? auth()->user()->kategori : '' }}">
     @include('partials.nav')
 
     @yield('dashboard')
@@ -48,13 +48,13 @@
     <!-- Navbar Start -->
     <div class="container-fluid">
 
-        <!-- @yield('content') -->
+        @yield('content')
 
-        <!-- Vendor Start -->
-        <!-- <div class="text-center mt-5 mb-4">
+        <!-- Vendor Start
+        <div class="text-center mt-5 mb-4">
             <h2 class="section-title px-5"><span class="px-2">Support By</span></h2>
-        </div> -->
-        <!-- <div class="section-empty bg-white">
+        </div>
+        <div class="section-empty bg-white">
             <div class="container content">
                 <hr class="space l" />
                 <div class="flexslider carousel png-over" data-options="numItems:5,minWidth:100,itemMargin:60,controlNav:false,directionNav:false">
@@ -107,10 +107,10 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div> -->
-    <!-- Penutup container-fluid -->
-    <!-- Vendor End -->
+        </div> -->
+    </div>
+    <!-- Penutup container-fluid
+    Vendor End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5">
@@ -192,8 +192,8 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
     <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{ asset('/eshopper/lib/easing/easing.min.js') }}"></script>
