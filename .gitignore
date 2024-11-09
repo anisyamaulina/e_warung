@@ -1,1 +1,50 @@
-node_modules
+# Laravel directories
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+
+# Laravel environment file
+.env
+
+# OS-generated files
+.DS_Store   # macOS specific
+Thumbs.db   # Windows specific
+
+# Log files
+/storage/logs/*
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# Composer directories
+/composer.lock
+
+# NPM / Yarn lock files (optional depending on your workflow)
+package-lock.json
+
+# Temporary files
+*.log
+*.tmp
+
+# Cache files
+/.phpunit.result.cache
+/.vagrant/
+
+# Testing/CI files
+coverage/
+
+# Laravel-specific cache
+/storage/framework/cache/*
+/storage/framework/views/*
+/storage/framework/sessions/*
+
+# Laravel session files
+/storage/sessions/*
+
+# Other generated files
+/public/hot
+/public/mix-manifest.json
+/public/storage
