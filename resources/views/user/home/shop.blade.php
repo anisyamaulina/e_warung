@@ -48,111 +48,33 @@
 
 @section('content')
     <!-- Categories Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5 pb-3">
-            @forelse ($warung as $item)
-                @if (!empty($users_id))
-                    @if ($item->users_id == $users_id->id)
-                        <div class="col-lg-4 col-md-6 pb-1 mt-3">
-                            <div class="advs-box advs-box-multiple boxed-inverse" data-anima="scale-up" data-trigger="hover" style="background-color: #EDF1FF">
-                                <a class="img-box"><img class="anima" src="{{asset('fotowarung/'. $item->fotowarung)}}" height="250px" width="250px" alt="" /></a>
-                                <div class="advs-box-content">
-                                    <h3>{{ $item->nama }}</h3>
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                    <p>{{ $item->alamat }}</p>
-                                    <div class="action d-flex justify-content-between">
-                                        @if (!empty($users_id))
-                                            @if ($item->users_id == $users_id->id)
-                                                <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                                <a class="btn-text" href="/warung/{{$item->id}}/edit">Edit</a>
-                                                {{-- <a class="btn-text" href="/warung/{{$item->id}}/delete">Delete</a> --}}
-                                                <a class="btn-text" href="{{ url('') }}" type="submit" id="deleteWarung" data-id="{{$item->id}}" data-nama="{{$item->nama}}">Delete</a>
-                                            @else
-                                                <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                            @endif
-                                        @else
-                                            <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="col-lg-4 col-md-6 pb-1 mt-3">
-                            <div class="advs-box advs-box-multiple boxed-inverse" data-anima="scale-up" data-trigger="hover">
-                                <a class="img-box"><img class="anima" src="{{asset('fotowarung/'. $item->fotowarung)}}" height="250px" width="250px" alt="" /></a>
-                                <div class="advs-box-content">
-                                    <h3>{{ $item->nama }}</h3>
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                    <p>{{ $item->alamat }}</p>
-                                    <div class="action d-flex justify-content-between">
-                                        @if (!empty($users_id))
-                                            @if ($item->users_id == $users_id->id)
-                                                <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                                <a class="btn-text" href="/warung/{{$item->id}}/edit">Edit</a>
-                                                {{-- <a class="btn-text" href="/warung/{{$item->id}}/delete">Delete</a> --}}
-                                                <a class="btn-text" href="{{ url('') }}" type="submit" id="deleteWarung" data-id="{{$item->id}}" data-nama="{{$item->nama}}">Delete</a>
-                                            @else
-                                                <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                            @endif
-                                        @else
-                                            <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @else
-                    <div class="col-lg-4 col-md-6 pb-1 mt-3">
-                        <div class="advs-box advs-box-multiple boxed-inverse" data-anima="scale-up" data-trigger="hover">
-                            <a class="img-box"><img class="anima" src="{{asset('fotowarung/'. $item->fotowarung)}}" height="250px" width="250px" alt="" /></a>
-                            <div class="advs-box-content">
-                                <h3>{{ $item->nama }}</h3>
-                                <div class="ratings">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                                <p>{{ $item->alamat }}</p>
-                                <div class="action d-flex justify-content-between">
-                                    @if (!empty($users_id))
-                                        @if ($item->users_id == $users_id->id)
-                                            <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                            <a class="btn-text" href="/warung/{{$item->id}}/edit">Edit</a>
-                                            {{-- <a class="btn-text" href="/warung/{{$item->id}}/delete">Delete</a> --}}
-                                            <a class="btn-text" href="{{ url('') }}" type="submit" id="deleteWarung" data-id="{{$item->id}}" data-nama="{{$item->nama}}">Delete</a>
-                                        @else
-                                            <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                        @endif
-                                    @else
-                                        <a class="btn-text" href="/warung/{{$item->id}}">Enter now </a>
-                                    @endif
-                                </div>
+    <div class="container">
+        <section id="warung" class="p-4">
+            <div class="row">
+                @forelse ($warung as $item)
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex mb-4">
+                    <div class="card w-100 d-flex flex-column">
+                        <img src="{{ asset('fotowarung/' . $item->fotowarung) }}" class="card-img-top object-fit-cover" alt="" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ $item->nama }}</h5>
+                            <p class="card-text">{{ $item->alamat }}</p>
+                            <div class="d-flex justify-content-between mt-auto">
+                                <a href="/warung/{{ $item->id }}" class="btn btn-primary">Enter now</a>
+                                @if ($users_id && $item->users_id == $users_id->id)
+                                <a class="btn btn-secondary" href="/warung/{{ $item->id }}/edit">Edit</a>
+                                <a class="btn btn-danger" href="{{ url('') }}" type="submit" id="deleteWarung" data-id="{{ $item->id }}" data-nama="{{ $item->nama }}">Delete</a>
+                                @endif
                             </div>
                         </div>
                     </div>
-                @endif
-            @empty
+                </div>
+                @empty
                 <div class="col-12">
                     <h3 class="section-title px-5"><span class="px-2">Belum ada Toko yang Terdaftar!</span></h3>
                 </div>
-            @endforelse
-        </div>
+                @endforelse
+            </div>
+        </section>
     </div>
     <!-- Categories End -->
 @endsection
