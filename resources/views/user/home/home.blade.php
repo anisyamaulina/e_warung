@@ -107,7 +107,7 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- Warung Start -->
         <section id="warung" class="p-4">
             <div class="text-center pb-4">
@@ -123,7 +123,7 @@
                             <p class="card-text">{{ $item->alamat }}</p>
                             <div class="d-flex justify-content-between mt-auto">
                                 <a href="/warung/{{ $item->id }}" class="btn btn-primary">Enter now</a>
-                                @if ($users_id && $item->users_id == $users_id->id)
+                                @if ($users_id && $item->users_id == $users_id->users_id)
                                 <a class="btn btn-secondary" href="/warung/{{ $item->id }}/edit">Edit</a>
                                 <a class="btn btn-danger" href="{{ url('') }}" type="submit" id="deleteWarung" data-id="{{ $item->id }}" data-nama="{{ $item->nama }}">Delete</a>
                                 @endif

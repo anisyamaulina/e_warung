@@ -64,78 +64,48 @@
     <!-- </div> -->
     <!-- Topbar End -->
 
-    <div class="row border-top border-bottom sticky-top">
-        <div class="col-lg-12">
-        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-xl-5">
-                
-                
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <!-- <a href="" class="text-decoration-none d-block d-lg-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Warung</h1>
+    <div class="container-fluid">
+        <div class="row border-top border-bottom sticky-top d-flex justify-content-end">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 px-2">
+                <a class="navbar-brand" href="#">
+                    <h1 class="m-0 display-5 font-weight-semi-bold">
+                        <span class="text-primary font-weight-bold border px-3 mr-1">E</span>Warung
+                    </h1>
                 </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button> -->
+                </button>
 
-                
-                    <!-- <div class="navbar-nav mr-auto py-0">
-                        <a href="/" class="nav-item nav-link {{ ($title === "Beranda") ? 'active' : 'collapsed' }}">Beranda</a>
-                        <a href="/warung" class="nav-item nav-link {{ ($title === "Warung") ? 'active' : 'collapsed' }}">Warung</a>
-                        @auth
-                            @if ( Auth::user()->kategori == 'Pembeli')
-                                <a href="/keranjang" class="nav-item nav-link {{ ($title === "Keranjang") ? 'active' : 'collapsed' }}">Keranjang</a>
-                            @endif
-                        @endauth
-                        <a href="/contact" class="nav-item nav-link {{ ($title === "Contact") ? 'active' : 'collapsed' }}">Contact</a>
-                    </div> -->
-                    <div class="navbar-nav ml-auto py-0">
-                        
-                            <a href="" class="text-decoration-none">
-                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Warung</h1>
-                            </a>
-                       
-                      
-        
-                        
-                        {{-- Jangan lupa dibalik, Login guest, nama auth --}}
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="/" class="nav-item nav-link {{ ($title === 'Beranda') ? 'active' : '' }}">Beranda</a>
+                        <a href="/warung" class="nav-item nav-link {{ ($title === 'Warung') ? 'active' : '' }}">Warung</a>
+                        <a href="/contact" class="nav-item nav-link {{ ($title === 'Contact') ? 'active' : '' }}">Kontak</a>
                         @guest
-                        <div class="custom-area" style="display: flex; justify-content: space-between;">
-                            
-                        <a href="/" class="nav-item nav-link {{ ($title === "Beranda") ? 'active' : 'collapsed' }}">Beranda</a>
-                        <a href="/warung" class="nav-item nav-link {{ ($title === "Warung") ? 'active' : 'collapsed' }}">Warung</a>
-                        @auth
-                            @if ( Auth::user()->kategori == 'Pembeli')
-                                <a href="/keranjang" class="nav-item nav-link {{ ($title === "Keranjang") ? 'active' : 'collapsed' }}">Keranjang</a>
-                            @endif
-                        @endauth
-                        <a href="/contact" class="nav-item nav-link {{ ($title === "Contact") ? 'active' : 'collapsed' }}">Kontak</a>
                             <a href="/admin" class="nav-item nav-link">Admin</a>
                             <a href="/login" class="nav-item nav-link">Masuk</a>
                             <a href="/register" class="nav-item nav-link">Daftar</a>
-                        </div>
                         @endguest
                         @auth
                             <div class="nav-item dropdown">
-                                <
-                                    {{ Auth::user()->nama }}<i class="fa fa-user mx-2" aria-hidden="true"></i>
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->nama }} <i class="fa fa-user mx-2" aria-hidden="true"></i>
                                 </a>
-                                <!-- <div class=""> -->
-                                    <a href="/profile" class="dropdown-item">Profil</a>
-                                    @auth
-                                        @if ( Auth::user()->kategori == 'Pembeli')
-                                            <a href="/order" class="dropdown-item">Pesanan</a>
-                                        @endif
-                                    @endauth
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                <!-- </div> -->
+                                <ul class="dropdown-menu w-auto" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="/profile">Profil</a></li>
+                                    @if (Auth::user()->kategori == 'Pembeli')
+                                        <li><a class="dropdown-item" href="/order">Pesanan</a></li>
+                                    @endif
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
                             </div>
                         @endauth
                     </div>
@@ -144,3 +114,8 @@
         </div>
     </div>
     <!-- Navbar End -->
+<style scoped>
+.dropdown-menu {
+    left: -7rem !important;
+}
+</style>
