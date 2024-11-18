@@ -137,7 +137,7 @@ class WarungController extends Controller
         $user = Auth::id();
         $users_id = User::where('id', $user)->first();
         $warung = Warung::find($id);
-        $barang = Barang::all();
+        $barang = Barang::where('warung_id', $id)->get();
         return view('user.penjual.home', ['title' => $warung->nama , 'users_id' => $users_id, 'barang' => $barang])->with('warung', $warung);
     }
 }
